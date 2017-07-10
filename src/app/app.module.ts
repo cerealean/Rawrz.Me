@@ -9,6 +9,7 @@ import { HomeComponent } from "app/components/home/home.component";
 import { AuthenticationService } from "app/services/authentication/authentication.service";
 import { LoginService } from "app/services/login/login.service";
 import { AppRoutingModule } from "app/app-routing.module";
+import { UserPreferencesComponent } from "app/components/user-preferences/user-preferences.component";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AppRoutingModule } from "app/app-routing.module";
     LoginComponent,
     HomeComponent,
     AppFooterComponent,
-    NavBarComponent
+    NavBarComponent,
+    UserPreferencesComponent
   ],
   imports: [
     BrowserModule,

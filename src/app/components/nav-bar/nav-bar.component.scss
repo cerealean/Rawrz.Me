@@ -1,11 +1,4 @@
 @import '../../../assets/styles/default-variables';
-.nav-icon {
-    position: absolute;
-    left: 5px;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-}
-
-.nav-icon:hover{
-    cursor: pointer;
+nav.navbar {
+    border-bottom: 1px solid $grey-lighter;
 }
