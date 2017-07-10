@@ -1,0 +1,80 @@
+<section class="hero" [hidden]="!showNavigation" #navigation>
+  <div class="hero-head">
+    <header class="nav">
+      <div class="container">
+        <div class="nav-left">
+          <a class="nav-item">
+            Logo here!
+          </a>
+        </div>
+        <div class="nav-center">
+          <a class="nav-item">
+            {{applicationName}}
+          </a>
+        </div>
+        <span class="nav-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <div class="nav-right nav-menu">
+          <span class="nav-item">
+            <a routerLink="/home" class="button is-primary is-inverted">
+              <span class="icon">
+                <i class="fa fa-home"></i>
+              </span>
+              <span>Home</span>
+            </a>
+          </span>
+          <span class="nav-item" [hidden]="user">
+            <a class="button is-primary is-inverted" (click)="triggerLoginModal()">
+              <span class="icon">
+                <i class="fa fa-sign-in"></i>
+              </span>
+              <span>Sign In</span>
+            </a>
+          </span>
+          <span class="nav-item" [hidden]="!user">
+            <a routerLink="/kiosk" class="button is-primary is-inverted">
+              <span class="icon">
+                <i class="fa fa-th"></i>
+              </span>
+              <span>Kiosk</span>
+            </a>
+          </span>
+          <span class="nav-item" [hidden]="!user">
+            <a routerLink="/gym-admin" class="button is-primary is-inverted">
+              <span class="icon">
+                <i class="fa fa-lock"></i>
+              </span>
+              <span>Admin</span>
+            </a>
+          </span>
+          <span class="nav-item" [hidden]="!user">
+            <a routerLink="/user-settings" class="button is-primary is-inverted">
+              <span class="icon">
+                <i class="fa fa-user"></i>
+              </span>
+              <span>{{user?.firstName}}</span>
+            </a>
+          </span>
+          <span class="nav-item" [hidden]="!user">
+            <a class="button is-primary is-inverted" 
+              (click)="logout()" 
+              [class.is-loading]="isLoggingOut">
+              <span class="icon">
+                <i class="fa fa-sign-out"></i>
+              </span>
+              <span>Sign Out</span>
+            </a>
+          </span>
+        </div>
+      </div>
+    </header>
+  </div>
+</section>
+<div class="icon nav-icon is-medium" (click)="toggleNavigationVisability(navIcon, navigation)" #navIcon>
+  <span class="fa fa-bars" [hidden]="!showNavigation"></span>
+  <span class="fa fa-bars" [hidden]="showNavigation"></span>
+</div>
+<app-login [showLoginModal]="showLoginModal" (onClose)="showLoginModal = false" (user)="setUser($event)"></app-login>
