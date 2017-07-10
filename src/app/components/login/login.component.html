@@ -1,0 +1,60 @@
+<div class="modal" [class.is-active]="showLoginModal">
+  <div class="modal-background" (click)="closeModal(username, password)"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Sign In</p>
+      <button class="delete" (click)="closeModal(username, password)"></button>
+    </header>
+    <section class="modal-card-body">
+      <form>
+        <div class="field">
+          <label class="label">Username</label>
+          <p class="control has-icons-left has-icons-right">
+            <input 
+              class="input" 
+              type="text" 
+              #username
+              placeholder="Username"
+              (blur)="validateUsername(username.value)"
+              (keyup)="isValidUsername = true; hasBlurredUsername = false"
+              (keydown.enter)="login(username, password)"
+              [class.is-success]="isValidUsername && hasBlurredUsername" 
+              [class.is-danger]="!isValidUsername && hasBlurredUsername" />
+            <span class="icon is-small is-left">
+              <i class="fa fa-user"></i>
+            </span>
+          </p>
+          <p class="help is-danger" [hidden]="!hasBlurredUsername || isValidUsername">Please enter a valid username</p>
+        </div>
+        <div class="field">
+          <label class="label">Password</label>
+          <p class="control has-icons-left has-icons-right">
+            <input 
+              class="input" 
+              type="password" 
+              #password
+              placeholder="Password" 
+              (blur)="validatePassword(password.value)"
+              (keyup)="isValidPassword = true; hasBlurredPassword = false"
+              (keydown.enter)="login(username, password)"
+              [class.is-success]="isValidPassword && hasBlurredPassword" 
+              [class.is-danger]="!isValidPassword && hasBlurredPassword" />            
+            <span class="icon is-small is-left">
+              <i class="fa fa-lock"></i>
+            </span>
+          </p>
+          <p class="help is-danger" [hidden]="!hasBlurredPassword || isValidPassword">Please enter a valid password</p>
+        </div>
+      </form>
+    </section>
+    <footer class="modal-card-foot">
+      <button 
+        class="button is-success" 
+        [class.is-loading]="isLoggingIn" 
+        (click)="login(username, password)"
+        [disabled]="!isValidUsername || !isValidPassword">Login</button>
+      <a class="button" (click)="closeModal(username, password)">Cancel</a>
+      <p class="help is-danger" [hidden]="!hasClickedLogin || isValidLogin">Your username and/or password are invalid</p>
+    </footer>
+  </div>
+</div>
