@@ -11,6 +11,7 @@ import { HomeComponent } from "app/components/home/home.component";
 import { AuthenticationService } from "app/services/authentication/authentication.service";
 import { LoginService } from "app/services/login/login.service";
 import { UserPreferencesComponent } from "app/components/user-preferences/user-preferences.component";
+import { ScheduleComponent } from './components/schedule/schedule.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { UserPreferencesComponent } from "app/components/user-preferences/user-p
     HomeComponent,
     AppFooterComponent,
     NavBarComponent,
-    UserPreferencesComponent
+    UserPreferencesComponent,
+    ScheduleComponent
   ],
   imports: [
     BrowserModule,
