@@ -1,10 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgIterable } from '@angular/core';
 import { DateRange } from "app/models/date-range";
 import * as moment from "moment";
 import { ScheduledUser } from "app/models/scheduled-user";
 import { AuthenticationService } from "app/services/authentication/authentication.service";
 import { Role } from "app/models/role";
 import { ScheduleService } from "app/services/schedule/schedule.service";
+
+class Rawr implements Iterable<ScheduledUser>{
+  [Symbol.iterator] = function*() {
+    yield new ScheduledUser();
+  }
+}
 
 @Component({
   templateUrl: './schedule.component.html',
@@ -14,7 +20,7 @@ export class ScheduleComponent implements OnInit {
   public dateRange: DateRange;
   public daysInRange: Date[];
   public scheduledUsers: ScheduledUser[] = [];
-  public scheduledUsersByRole: { [k: string]: ScheduledUser[] } = {};
+  public scheduledUsersByRole: Rawr = new Rawr();
   public roles: Role[] = [];
 
   constructor(
