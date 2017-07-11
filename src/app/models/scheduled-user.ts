@@ -1,7 +1,8 @@
 import { User } from "app/models/user";
+import { Role } from "app/models/role";
 
 export class ScheduledUser {
   public user: User;
-  public position: string;
+  public role: Role;
   public scheduledOn: Date;
 }

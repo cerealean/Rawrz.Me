@@ -13,6 +13,8 @@ import { AuthenticationService } from "app/services/authentication/authenticatio
 import { LoginService } from "app/services/login/login.service";
 import { UserPreferencesComponent } from "app/components/user-preferences/user-preferences.component";
 import { ScheduleComponent } from './components/schedule/schedule.component';
+import { ScheduleService } from "app/services/schedule/schedule.service";
+import { HttpModule } from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -28,11 +30,13 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    HttpModule
   ],
   providers: [
     LoginService,
-    AuthenticationService
+    AuthenticationService,
+    ScheduleService
   ],
   bootstrap: [AppComponent]
 })
