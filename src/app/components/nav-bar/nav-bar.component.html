@@ -19,7 +19,7 @@
 
   <div id="navMenuExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item " routerlink="/">
+      <a class="navbar-item " routerLink="/">
         Home
       </a>
       <div class="navbar-item has-dropdown is-hoverable" *ngIf="user">
@@ -27,13 +27,13 @@
           Options
         </a>
         <div class="navbar-dropdown is-boxed">
-          <a class="navbar-item" routerlink="/user-preferences">
+          <a class="navbar-item" routerLink="/user-preferences">
             Preferences
           </a>
-          <a class="navbar-item" routerlink="/">
+          <a class="navbar-item" routerLink="/">
             Schedule
           </a>
-          <a class="navbar-item" routerlink="/">
+          <a class="navbar-item" routerLink="/">
             Availability
           </a>
         </div>
@@ -52,7 +52,7 @@
             </a>
           </p>
           <p class="control" [hidden]="!user">
-            <a class="button">
+            <a class="button" (click)="logout()" [class.is-loading]="isLoggingOut">
               <span class="icon">
                 <i class="fa fa-sign-out"></i>
               </span>

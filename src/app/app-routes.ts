@@ -15,6 +15,7 @@ export const appRoutes: Routes = [
   },
   {
     path: "user-preferences",
-    component: UserPreferencesComponent
+    component: UserPreferencesComponent,
+    canActivate: [MemberGuard]
   }
 ];

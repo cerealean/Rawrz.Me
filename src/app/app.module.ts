@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from "@angular/forms";
+import { AppRoutingModule } from "app/app-routing.module";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -8,7 +10,6 @@ import { AppFooterComponent } from "app/components/app-footer/app-footer.compone
 import { HomeComponent } from "app/components/home/home.component";
 import { AuthenticationService } from "app/services/authentication/authentication.service";
 import { LoginService } from "app/services/login/login.service";
-import { AppRoutingModule } from "app/app-routing.module";
 import { UserPreferencesComponent } from "app/components/user-preferences/user-preferences.component";
 
 @NgModule({
@@ -22,7 +23,8 @@ import { UserPreferencesComponent } from "app/components/user-preferences/user-p
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
     LoginService,

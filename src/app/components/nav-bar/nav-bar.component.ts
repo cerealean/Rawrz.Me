@@ -29,7 +29,6 @@ export class NavBarComponent implements OnInit {
   }
 
   getCurrentRoute():string{
-    console.log(this.route.toString());
     return this.route.toString();
   }
 
