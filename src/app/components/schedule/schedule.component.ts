@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DateRange } from "app/models/date-range";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-schedule',
@@ -7,11 +8,15 @@ import { DateRange } from "app/models/date-range";
   styleUrls: ['./schedule.component.scss']
 })
 export class ScheduleComponent implements OnInit {
-  public dateRange:DateRange;
+  public dateRange: DateRange = {
+    beginDate: moment().startOf("day").toDate(),
+    endDate: moment().add(1, "week").endOf("day").toDate()
+  };
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.dateRange);
   }
 
 }
