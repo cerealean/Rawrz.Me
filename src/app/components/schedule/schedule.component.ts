@@ -14,6 +14,7 @@ export class ScheduleComponent implements OnInit {
   public dateRange: DateRange;
   public daysInRange: Date[];
   public scheduledUsers: ScheduledUser[] = [];
+  public scheduledUsersByRole: { [k: string]: ScheduledUser[] } = {};
   public roles: Role[] = [];
 
   constructor(
@@ -29,7 +30,13 @@ export class ScheduleComponent implements OnInit {
     this.daysInRange = this.dateRange.getRange();
     this.roles = this.scheduleService.getRoles();
     console.log(this.dateRange.getRange());
-    this.daysInRange.map(day => {
+    this.prepareFakeData();
+    this.roles.map(role => this.scheduledUsersByRole[role.name] = this.scheduledUsers.filter(user => user.role == role));   
+    console.log(this.scheduledUsersByRole);
+  }
+
+  private prepareFakeData() {
+        this.daysInRange.map(day => {
       this.scheduledUsers.push(
         {
           scheduledOn: day,
