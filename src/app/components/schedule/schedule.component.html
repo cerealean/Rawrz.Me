@@ -1,7 +1,13 @@
 <table class="table">
   <thead>
     <tr>
+      <th></th>
       <th *ngFor="let day of daysInRange">{{day | date:'EEE, MM/dd/yyyy'}}</th>
     </tr>
   </thead>
+  <tbody>
+    <tr *ngFor="let user of scheduledUsers">
+      <td>{{user.position}}</td>
+    </tr>
+  </tbody>
 </table>
