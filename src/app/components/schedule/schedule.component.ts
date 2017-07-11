@@ -3,7 +3,6 @@ import { DateRange } from "app/models/date-range";
 import * as moment from "moment";
 
 @Component({
-  selector: 'app-schedule',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.scss']
 })

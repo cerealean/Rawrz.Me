@@ -3,7 +3,6 @@ import { User } from "app/models/user";
 import { AuthenticationService } from "app/services/authentication/authentication.service";
 
 @Component({
-  selector: 'app-user-preferences',
   templateUrl: './user-preferences.component.html',
   styleUrls: ['./user-preferences.component.scss']
 })
