@@ -1,21 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { DateRange } from "app/models/date-range";
 import * as moment from "moment";
+import { ScheduledUser } from "app/models/scheduled-user";
 
 @Component({
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.scss']
 })
 export class ScheduleComponent implements OnInit {
-  public dateRange: DateRange = {
-    beginDate: moment().startOf("day").toDate(),
-    endDate: moment().add(1, "week").endOf("day").toDate()
-  };
+  public dateRange: DateRange;
+  public daysInRange: Date[];
+  public scheduledUsers: ScheduledUser[];
 
-  constructor() { }
+  constructor() {
+    let beginDate = moment().startOf("day").toDate();
+    let endDate = moment().add(1, "week").endOf("day").toDate();
+    this.dateRange = new DateRange(beginDate, endDate);
+  }
 
   ngOnInit() {
-    console.log(this.dateRange);
+    this.daysInRange = this.dateRange.getRange();
+    console.log(this.dateRange.getRange());
   }
 
 }

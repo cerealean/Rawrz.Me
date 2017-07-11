@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { AppRoutingModule } from "app/app-routing.module";
+import { CommonModule } from "@angular/common";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -26,7 +27,8 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   providers: [
     LoginService,

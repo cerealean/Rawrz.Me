@@ -1,3 +1,7 @@
-<p>
-  schedule works!
-</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th *ngFor="let day of daysInRange">{{day | date:'EEE, MM/dd/yyyy'}}</th>
+    </tr>
+  </thead>
+</table>
