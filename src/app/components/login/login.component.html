@@ -54,7 +54,7 @@
         (click)="login(username, password)"
         [disabled]="!isValidUsername || !isValidPassword">Login</button>
       <a class="button" (click)="closeModal(username, password)">Cancel</a>
-      <p class="help is-danger" [hidden]="!hasClickedLogin || isValidLogin">Your username and/or password are invalid</p>
+      <p class="help is-danger" [hidden]="!hasClickedLogin || isValidLogin || isLoggingIn">Your username and/or password are invalid</p>
     </footer>
   </div>
 </div>

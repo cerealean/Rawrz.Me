@@ -11,6 +11,7 @@ import "rxjs/add/operator/map";
 @Injectable()
 export class LoginService {
   private readonly loginServiceEndpoint: string = environment.serviceEndpoint + "/Login";
+  private readonly logoutServiceEndpoint: string = environment.serviceEndpoint + "/Logout";
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -19,7 +20,6 @@ export class LoginService {
 
   login(username: string, password: string): Observable<User>{
     try {
-      console.log("rawr");
       const loginModel: Login = { Username: username, Password: password };
       const request = this.http
         .post(this.loginServiceEndpoint, loginModel)
@@ -34,41 +34,23 @@ export class LoginService {
     catch(error){
       console.error(error);
     }
-        // const currentDate = new Date().valueOf();
-    // const encryptedUsername = CryptoJS.AES.encrypt(username, currentDate.toString());
-    // const encryptedPassword = CryptoJS.AES.encrypt(password, currentDate.toString());
-    // //send to other service;
-
-    // const testUsername = "rawrlicious";
-    // const testPassword = "rawrlicious";
-
-    // const isValidPassword = username == testUsername && password == testPassword;
-
-    // if(isValidPassword){
-    //   this.setLocalUserInformation();
-    // }
-
-    // return this.authenticationService.getCurrentlyLoggedInUser();
   }
 
   logout(){
-    this.authenticationService.clearCurrentlyLoggedInUser();
-  }
+    try {
+      const user = this.authenticationService.getCurrentlyLoggedInUser();
 
-  private setLocalUserInformation(){
-    const currentDate = new Date();
-    const fakeUserResponse = new User();
-    fakeUserResponse.Id = 55;
-    fakeUserResponse.FirstName = "Wendy";
-    fakeUserResponse.LastName = "Crawford";
-    fakeUserResponse.Email = "wendy.crawford@fakemail.com";
-    fakeUserResponse.Phone = "5739794671";
-    fakeUserResponse.Authentication = {
-      token: "myToken",
-      loggedIn: currentDate,
-      expires: new Date(currentDate.setHours(currentDate.getHours() + 3))
-    };
-    this.authenticationService.setCurrentlyLoggedInUser(fakeUserResponse);
+      const request = this.http
+        .post(this.loginServiceEndpoint, user)
+        .map(request => request.json());
+      request.subscribe(() => {
+        this.authenticationService.clearCurrentlyLoggedInUser();
+      });
+
+      return request;
+    } catch (error) {
+      console.error(error);
+    }
   }
 
 }

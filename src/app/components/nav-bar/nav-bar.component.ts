@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../models/user';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { environment } from '../../../environments/environment';
+import { LoginService } from "app/services/login/login.service";
 
 @Component({
   selector: 'nav-bar',
@@ -17,19 +18,14 @@ export class NavBarComponent implements OnInit {
   public applicationName:string = environment.applicationName;
 
   constructor(
-    private authenticationService:AuthenticationService,
-    private route:ActivatedRoute,
-    private router:Router
+    private authenticationService: AuthenticationService,
+    private loginService: LoginService
   ) { }
 
   ngOnInit() {
     if(this.authenticationService.isUserLoggedIn()){
       this.user = this.authenticationService.getCurrentlyLoggedInUser();
     }
-  }
-
-  getCurrentRoute():string{
-    return this.route.toString();
   }
 
   triggerLoginModal(){
@@ -48,11 +44,11 @@ export class NavBarComponent implements OnInit {
 
   logout(){
     this.isLoggingOut = true;
-    this.authenticationService.clearCurrentlyLoggedInUser();
     this.user = null;
-    setTimeout(() => {
-      this.isLoggingOut = false;
-      this.router.navigateByUrl("/home");
-    }, 3000);
+    this.loginService
+      .logout()
+      .subscribe(() => {
+        this.isLoggingOut = false;
+      });
   }
 }
