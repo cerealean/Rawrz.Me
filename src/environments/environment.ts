@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   applicationName: "Rawrz",
-  serviceEndpoint: ""
+  serviceEndpoint: "http://localhost:50512/api"
 };

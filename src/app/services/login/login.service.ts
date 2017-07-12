@@ -10,7 +10,7 @@ import * as map from "rxjs/add/operator/map";
 
 @Injectable()
 export class LoginService {
-  private readonly loginServiceEndpoint: string = environment.serviceEndpoint + "/login";
+  private readonly loginServiceEndpoint: string = environment.serviceEndpoint + "/Login";
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -18,17 +18,22 @@ export class LoginService {
   ) { }
 
   login(username: string, password: string): Observable<User>{
-    const loginModel: Login = {
-      Username: username,
-      Password: password
-    };
-    const request = this.http
-      .post(this.loginServiceEndpoint, loginModel)
-      .map(request => request.json());
-    request.subscribe(user => this.authenticationService.setCurrentlyLoggedInUser(user));
-    
-    return request;
-    // const currentDate = new Date().valueOf();
+    try {
+      console.log("rawr");
+      const loginModel: Login = { Username: username, Password: password };
+      const request = this.http
+        .post(this.loginServiceEndpoint, loginModel)
+        .map(request => request.json());
+      request.subscribe(user =>
+        this.authenticationService.setCurrentlyLoggedInUser(user)
+      );
+
+      return request;
+    }
+    catch(error){
+      console.error(error);
+    }
+        // const currentDate = new Date().valueOf();
     // const encryptedUsername = CryptoJS.AES.encrypt(username, currentDate.toString());
     // const encryptedPassword = CryptoJS.AES.encrypt(password, currentDate.toString());
     // //send to other service;

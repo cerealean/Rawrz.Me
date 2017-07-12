@@ -50,16 +50,19 @@ export class LoginComponent implements OnInit {
       this.validatePassword(passwordValue);
       if(this.isValidUsername && this.isValidPassword){
         this.isLoggingIn = true;
-        setTimeout(() => {
-          this.isLoggingIn = false;
-          this.hasClickedLogin = true;
-          const user = this.loginService.login(usernameValue, passwordValue);
-          this.isValidLogin = user != null;
-          if(this.isValidLogin){
-            this.user.emit(user);
-            this.closeModal(username, password);
-          }
-        }, 3000);
+        this.hasClickedLogin = true;
+        this.loginService
+          .login(usernameValue, passwordValue)
+          .subscribe(user => {
+            this.isValidLogin = user != null;
+            if (this.isValidLogin) {
+              this.user.emit(user);
+              this.closeModal(username, password);
+            }
+          },
+          () => this.isLoggingIn = false,
+          () => this.isLoggingIn = false
+          );
       }
     }
     catch(exception){
