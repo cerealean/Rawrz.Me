@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  applicationName: "Rawrz"
+  applicationName: "Rawrz",
+  serviceEndpoint: ""
 };

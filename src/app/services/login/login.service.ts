@@ -3,31 +3,46 @@ import * as CryptoJS from 'crypto-js';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { User } from '../../models/user';
 import { Http } from "@angular/http";
+import { environment } from "environments/environment";
+import { Login } from "app/models/login";
+import { Observable } from "rxjs/Observable";
+import * as map from "rxjs/add/operator/map";
 
 @Injectable()
 export class LoginService {
+  private readonly loginServiceEndpoint: string = environment.serviceEndpoint + "/login";
 
   constructor(
     private authenticationService: AuthenticationService,
     private http: Http
   ) { }
 
-  login(username:string, password:string):User{
-    const currentDate = new Date().valueOf();
-    const encryptedUsername = CryptoJS.AES.encrypt(username, currentDate.toString());
-    const encryptedPassword = CryptoJS.AES.encrypt(password, currentDate.toString());
-    //send to other service;
+  login(username: string, password: string): Observable<User>{
+    const loginModel: Login = {
+      Username: username,
+      Password: password
+    };
+    const request = this.http
+      .post(this.loginServiceEndpoint, loginModel)
+      .map(request => request.json());
+    request.subscribe(user => this.authenticationService.setCurrentlyLoggedInUser(user));
+    
+    return request;
+    // const currentDate = new Date().valueOf();
+    // const encryptedUsername = CryptoJS.AES.encrypt(username, currentDate.toString());
+    // const encryptedPassword = CryptoJS.AES.encrypt(password, currentDate.toString());
+    // //send to other service;
 
-    const testUsername = "rawrlicious";
-    const testPassword = "rawrlicious";
+    // const testUsername = "rawrlicious";
+    // const testPassword = "rawrlicious";
 
-    const isValidPassword = username == testUsername && password == testPassword;
+    // const isValidPassword = username == testUsername && password == testPassword;
 
-    if(isValidPassword){
-      this.setLocalUserInformation();
-    }
+    // if(isValidPassword){
+    //   this.setLocalUserInformation();
+    // }
 
-    return this.authenticationService.getCurrentlyLoggedInUser();
+    // return this.authenticationService.getCurrentlyLoggedInUser();
   }
 
   logout(){
