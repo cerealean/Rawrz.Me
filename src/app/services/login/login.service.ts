@@ -5,8 +5,8 @@ import { User } from '../../models/user';
 import { Http } from "@angular/http";
 import { environment } from "environments/environment";
 import { Login } from "app/models/login";
-import { Observable } from "rxjs/Observable";
-import * as map from "rxjs/add/operator/map";
+import { Observable } from "rxjs/Rx";
+import "rxjs/add/operator/map";
 
 @Injectable()
 export class LoginService {
@@ -24,9 +24,10 @@ export class LoginService {
       const request = this.http
         .post(this.loginServiceEndpoint, loginModel)
         .map(request => request.json());
-      request.subscribe(user =>
+      request.subscribe(user => {
+        console.log(user);
         this.authenticationService.setCurrentlyLoggedInUser(user)
-      );
+      });
 
       return request;
     }

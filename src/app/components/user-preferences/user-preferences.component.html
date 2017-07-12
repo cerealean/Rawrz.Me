@@ -11,7 +11,7 @@
         <div class="field-body">
           <div class="field">
             <p class="control is-expanded has-icons-left">
-              <input class="input" type="text" placeholder="Username" [(ngModel)]="user.username" disabled>
+              <input class="input" type="text" placeholder="Username" [(ngModel)]="user.Username" disabled>
               <span class="icon is-small is-left">
               <i class="fa fa-user-o"></i>
             </span>
@@ -27,7 +27,7 @@
         <div class="field-body">
           <div class="field is-grouped">
             <p class="control is-expanded has-icons-left">
-              <input class="input" type="text" placeholder="First" [(ngModel)]="user.firstName">
+              <input class="input" type="text" placeholder="First" [(ngModel)]="user.FirstName">
               <span class="icon is-small is-left">
                 <i class="fa fa-user"></i>
               </span>
@@ -35,7 +35,7 @@
           </div>
           <div class="field">
             <p class="control is-expanded has-icons-left">
-              <input class="input" type="text" placeholder="Last" [(ngModel)]="user.lastName">
+              <input class="input" type="text" placeholder="Last" [(ngModel)]="user.LastName">
               <span class="icon is-small is-left">
                 <i class="fa fa-user"></i>
               </span>
@@ -51,7 +51,7 @@
         <div class="field-body">
           <div class="field is-grouped">
             <p class="control is-expanded has-icons-left">
-              <input class="input" type="email" placeholder="Email" [(ngModel)]="user.email">
+              <input class="input" type="email" placeholder="Email" [(ngModel)]="user.Email">
               <span class="icon is-small is-left">
                 <i class="fa fa-envelope-o"></i>
               </span>
@@ -59,7 +59,7 @@
           </div>
           <div class="field">
             <p class="control is-expanded has-icons-left">
-              <input class="input" type="tel" placeholder="Phone" [(ngModel)]="user.phone">
+              <input class="input" type="tel" placeholder="Phone" [(ngModel)]="user.Phone">
               <span class="icon is-small is-left">
                 <i class="fa fa-phone"></i>
               </span>
@@ -80,14 +80,14 @@
           <div class="field is-narrow">
             <div class="control">
               <label class="radio">
-                <input type="radio" name="canText" [(ngModel)]="user.canText" [value]="true">
+                <input type="radio" name="CanText" [(ngModel)]="user.CanText" [value]="true">
                 Yes
               </label>
               <label class="radio">
-                <input type="radio" name="canText" [(ngModel)]="user.canText" [value]="false">
+                <input type="radio" name="CanText" [(ngModel)]="user.CanText" [value]="false">
                 No
               </label>
-              <span class="help is-info" [hidden]="!user.canText">*Standard data and/or message rates may apply</span>
+              <span class="help is-info" [hidden]="!user.CanText">*Standard data and/or message rates may apply</span>
             </div>
           </div>
         </div>
@@ -101,11 +101,11 @@
           <div class="field is-narrow">
             <div class="control">
               <label class="radio">
-                <input type="radio" name="canEmail" [(ngModel)]="user.canEmail" [value]="true">
+                <input type="radio" name="CanEmail" [(ngModel)]="user.CanEmail" [value]="true">
                 Yes
               </label>
               <label class="radio">
-                <input type="radio" name="canEmail" [(ngModel)]="user.canEmail" [value]="false">
+                <input type="radio" name="CanEmail" [(ngModel)]="user.CanEmail" [value]="false">
                 No
               </label>
             </div>
@@ -136,14 +136,14 @@
           <div class="field is-narrow">
             <div class="control">
               <label class="radio">
-                <input type="radio" name="twoFactorAuthentication" [(ngModel)]="user.twoFactorAuthentication" [value]="true" [disabled]="!user.canText">
+                <input type="radio" name="twoFactorAuthentication" [(ngModel)]="user.TwoFactorAuthentication" [value]="true" [disabled]="!user.canText">
                 Yes
               </label>
               <label class="radio">
-                <input type="radio" name="twoFactorAuthentication" [(ngModel)]="user.twoFactorAuthentication" [value]="false" [disabled]="!user.canText">
+                <input type="radio" name="twoFactorAuthentication" [(ngModel)]="user.TwoFactorAuthentication" [value]="false" [disabled]="!user.canText">
                 No
               </label>
-              <span class="help is-danger" [hidden]="user.canText">*You must allow texting to enable this feature</span>
+              <span class="help is-danger" [hidden]="user.CanText">*You must allow texting to enable this feature</span>
             </div>
           </div>
         </div>
