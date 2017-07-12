@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { User } from '../../models/user';
+import { Http } from "@angular/http";
 
 @Injectable()
 export class LoginService {
 
   constructor(
-    private authenticationService:AuthenticationService
+    private authenticationService: AuthenticationService,
+    private http: Http
   ) { }
 
   login(username:string, password:string):User{
@@ -35,12 +37,12 @@ export class LoginService {
   private setLocalUserInformation(){
     const currentDate = new Date();
     const fakeUserResponse = new User();
-    fakeUserResponse.id = 55;
-    fakeUserResponse.firstName = "Wendy";
-    fakeUserResponse.lastName = "Crawford";
-    fakeUserResponse.email = "wendy.crawford@fakemail.com";
-    fakeUserResponse.phone = "5739794671";
-    fakeUserResponse.authentication = {
+    fakeUserResponse.Id = 55;
+    fakeUserResponse.FirstName = "Wendy";
+    fakeUserResponse.LastName = "Crawford";
+    fakeUserResponse.Email = "wendy.crawford@fakemail.com";
+    fakeUserResponse.Phone = "5739794671";
+    fakeUserResponse.Authentication = {
       token: "myToken",
       loggedIn: currentDate,
       expires: new Date(currentDate.setHours(currentDate.getHours() + 3))
