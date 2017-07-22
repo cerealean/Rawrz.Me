@@ -136,11 +136,11 @@
           <div class="field is-narrow">
             <div class="control">
               <label class="radio">
-                <input type="radio" name="twoFactorAuthentication" [(ngModel)]="user.TwoFactorAuthentication" [value]="true" [disabled]="!user.canText">
+                <input type="radio" name="twoFactorAuthentication" [(ngModel)]="user.TwoFactorAuthentication" [value]="true" [disabled]="!user.CanText">
                 Yes
               </label>
               <label class="radio">
-                <input type="radio" name="twoFactorAuthentication" [(ngModel)]="user.TwoFactorAuthentication" [value]="false" [disabled]="!user.canText">
+                <input type="radio" name="twoFactorAuthentication" [(ngModel)]="user.TwoFactorAuthentication" [value]="false" [disabled]="!user.CanText">
                 No
               </label>
               <span class="help is-danger" [hidden]="user.CanText">*You must allow texting to enable this feature</span>

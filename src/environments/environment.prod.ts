@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  applicationName: "Rawrz"
+  applicationName: "Rawrz",
+  serviceEndpoint: "http://rawrzme-api.azurewebsites.net:50512/api"
 };
