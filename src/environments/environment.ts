@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   applicationName: "Rawrz",
-  serviceEndpoint: "http://localhost:50512/api"
+  serviceEndpoint: "http://api.michaelcrawford.ninja/api"
 };
