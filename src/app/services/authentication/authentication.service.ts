@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../models/user';
 import * as CryptoJS from 'crypto-js';
+import { environment } from "environments/environment";
 
 @Injectable()
 export class AuthenticationService {
-  private readonly hash:string = CryptoJS.enc.Base64.parse("r@wr13579!#");
-  private readonly iv:string = CryptoJS.enc.Base64.parse("Th0r!s@m@z1ngz");
-  private readonly currentUserKey:string = "currentUser";
+  private readonly hash:string = CryptoJS.enc.Base64.parse(environment.storageHash);
+  private readonly iv:string = CryptoJS.enc.Base64.parse(environment.storageIV);
+  private readonly currentUserKey:string = environment.currentUserKey;
   private isLoggedIn:boolean = false;
 
   constructor() { 
