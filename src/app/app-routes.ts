@@ -7,7 +7,7 @@ import { ScheduleComponent } from "app/components/schedule/schedule.component";
 export const appRoutes: Routes = [
   {
     path: "",
-    redirectTo: "/home",
+    redirectTo: "home",
     pathMatch: "full"
   },
   {
