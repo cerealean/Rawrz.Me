@@ -44,33 +44,38 @@
         </div>
       </div>
 
-      <!--<div class="field is-horizontal">
+      <div class="field is-horizontal">
         <div class="field-label is-normal">
-          <label class="label">Contact</label>
+          <label class="label">Email</label>
         </div>
         <div class="field-body">
-          <div class="field is-grouped">
-            <p class="control is-expanded has-icons-left">
-              <input class="input" type="email" placeholder="Email" [(ngModel)]="user.Email[0].EmailAddress">
-              <span class="icon is-small is-left">
-                <i class="fa fa-envelope-o"></i>
-              </span>
-            </p>
-          </div>
-          <div class="field">
-            <p class="control is-expanded has-icons-left">
-              <input class="input" type="tel" placeholder="Phone" [(ngModel)]="user.Phone[0].PhoneNumber">
-              <span class="icon is-small is-left">
-                <i class="fa fa-phone"></i>
-              </span>
-            </p>
+            <div class="field">
+              <div class="box" *ngFor="let email of user.EmailAddresses">
+                <p class="control is-expanded has-icons-left">
+                  <input class="input" type="email" placeholder="Email" [(ngModel)]="email.EmailAddress">
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-envelope-o"></i>
+                  </span>
+                </p>
+                <div class="field is-grouped">
+                  <p class="control is-expanded">
+                    <input class="checkbox" type="checkbox" [(ngModel)]="email.IsPrimary"> Is Primary
+                  </p>
+                  <p class="control is-expanded">
+                    <input class="checkbox" type="checkbox" [(ngModel)]="email.IsVerified" disabled> Is Verified
+                  </p>
+                  <p class="control is-expanded">
+                    <input class="checkbox" type="checkbox" [(ngModel)]="email.CanEmail"> Can Email
+                  </p>
+                </div>
+            </div>
           </div>
         </div>
       </div>
 
       <hr />
 
-      <h2 class="title">Preferences</h2>
+      <!--<h2 class="title">Preferences</h2>
 
       <div class="field is-horizontal">
         <div class="field-label">
