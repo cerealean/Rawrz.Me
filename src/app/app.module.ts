@@ -15,6 +15,7 @@ import { UserPreferencesComponent } from "app/components/user-preferences/user-p
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { ScheduleService } from "app/services/schedule/schedule.service";
 import { HttpModule } from "@angular/http";
+import { UserService } from "app/services/user/user.service";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { HttpModule } from "@angular/http";
   providers: [
     LoginService,
     AuthenticationService,
-    ScheduleService
+    ScheduleService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

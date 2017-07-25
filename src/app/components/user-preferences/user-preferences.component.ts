@@ -15,7 +15,6 @@ export class UserPreferencesComponent implements OnInit {
   ngOnInit() {
     if (this.authenticationService.isUserLoggedIn()) {
       this.user = this.authenticationService.getCurrentlyLoggedInUser();
-      console.log(this.user);
     }
   }
 
