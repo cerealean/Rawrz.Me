@@ -46,29 +46,34 @@
 
       <div class="field is-horizontal">
         <div class="field-label is-normal">
-          <label class="label">Email</label>
+          <label class="label">Email</label><br />
+          <a (click)="addNewEmail()">Add New</a>
         </div>
-        <div class="field-body">
+        <div class="field-body box">
             <div class="field">
-              <div class="box" *ngFor="let email of user.EmailAddresses">
-                <p class="control is-expanded has-icons-left">
-                  <input class="input" type="email" placeholder="Email" [(ngModel)]="email.EmailAddress">
-                  <span class="icon is-small is-left">
-                    <i class="fa fa-envelope-o"></i>
-                  </span>
-                </p>
-                <div class="field is-grouped">
-                  <p class="control is-expanded">
-                    <input class="checkbox" type="checkbox" [(ngModel)]="email.IsPrimary"> Is Primary
-                  </p>
-                  <p class="control is-expanded">
-                    <input class="checkbox" type="checkbox" [(ngModel)]="email.IsVerified" disabled> Is Verified
-                  </p>
-                  <p class="control is-expanded">
-                    <input class="checkbox" type="checkbox" [(ngModel)]="email.CanEmail"> Can Email
+              <article class="media" *ngFor="let email of user.EmailAddresses">
+                <div class="media-content">
+                  <p class="control is-expanded has-icons-left">
+                    <input class="input" type="email" placeholder="Email" [(ngModel)]="email.EmailAddress">
+                    <span class="icon is-small is-left">
+                      <i class="fa fa-envelope-o"></i>
+                    </span>
                   </p>
                 </div>
-            </div>
+                <div class="media-right">
+                  <div class="field is-grouped">
+                    <p class="control is-expanded">
+                      <input class="checkbox" type="checkbox" [(ngModel)]="email.IsPrimary"> Is Primary
+                    </p>
+                    <p class="control is-expanded">
+                      <input class="checkbox" type="checkbox" [(ngModel)]="email.IsVerified" disabled> Is Verified
+                    </p>
+                    <p class="control is-expanded">
+                      <input class="checkbox" type="checkbox" [(ngModel)]="email.CanEmail"> Can Email
+                    </p>
+                  </div>
+                </div>
+              </article>
           </div>
         </div>
       </div>

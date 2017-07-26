@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from "app/models/user";
 import { AuthenticationService } from "app/services/authentication/authentication.service";
+import { Email } from "app/models/email";
 
 @Component({
   templateUrl: './user-preferences.component.html',
@@ -16,6 +17,10 @@ export class UserPreferencesComponent implements OnInit {
     if (this.authenticationService.isUserLoggedIn()) {
       this.user = this.authenticationService.getCurrentlyLoggedInUser();
     }
+  }
+
+  addNewEmail() {
+    this.user.EmailAddresses.push(new Email());
   }
 
   save() {
