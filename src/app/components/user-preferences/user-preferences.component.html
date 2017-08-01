@@ -164,51 +164,6 @@
 
       <hr />
 
-      <!--<h2 class="title">Preferences</h2>
-
-      <div class="field is-horizontal">
-        <div class="field-label">
-          <label class="label">Can we text you?</label>
-        </div>
-        <div class="field-body">
-          <div class="field is-narrow">
-            <div class="control">
-              <label class="radio">
-                <input type="radio" name="CanText" [(ngModel)]="user.CanText" [value]="true">
-                Yes
-              </label>
-              <label class="radio">
-                <input type="radio" name="CanText" [(ngModel)]="user.CanText" [value]="false">
-                No
-              </label>
-              <span class="help is-info" [hidden]="!user.CanText">*Standard data and/or message rates may apply</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="field is-horizontal">
-        <div class="field-label">
-          <label class="label">Can we email you?</label>
-        </div>
-        <div class="field-body">
-          <div class="field is-narrow">
-            <div class="control">
-              <label class="radio">
-                <input type="radio" name="CanEmail" [(ngModel)]="user.CanEmail" [value]="true">
-                Yes
-              </label>
-              <label class="radio">
-                <input type="radio" name="CanEmail" [(ngModel)]="user.CanEmail" [value]="false">
-                No
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>-->
-
-      <hr />
-
       <h2 class="title">Security</h2>
 
       <div class="field is-horizontal">
@@ -230,14 +185,22 @@
           <div class="field is-narrow">
             <div class="control">
               <label class="radio">
-                <input type="radio" name="twoFactorAuthentication" [(ngModel)]="user.TwoFactorAuthentication" [value]="true" [disabled]="!user.CanText">
+                <input type="radio" 
+                  name="twoFactorAuthentication" 
+                  [(ngModel)]="user.TwoFactorAuthentication" 
+                  [value]="true" 
+                  [disabled]="!canTextUser()">
                 Yes
               </label>
               <label class="radio">
-                <input type="radio" name="twoFactorAuthentication" [(ngModel)]="user.TwoFactorAuthentication" [value]="false" [disabled]="!user.CanText">
+                <input type="radio" 
+                  name="twoFactorAuthentication" 
+                  [(ngModel)]="user.TwoFactorAuthentication" 
+                  [value]="false" 
+                  [disabled]="!user.CanText">
                 No
               </label>
-              <span class="help is-danger" [hidden]="user.CanText">*You must allow texting to enable this feature</span>
+              <span class="help is-danger" [hidden]="canTextUser()">*You must allow texting to enable this feature</span>
             </div>
           </div>
         </div>

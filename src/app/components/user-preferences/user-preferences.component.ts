@@ -69,6 +69,10 @@ export class UserPreferencesComponent implements OnInit {
     }
   }
 
+  canTextUser() : boolean {
+    return this.user.PhoneNumbers.find(phone => phone.PhoneType === PhoneType.Mobile && phone.CanText) !== undefined;
+  }
+
   private getPhoneTypes(): string[] {
     return Object.keys(PhoneType).filter(key => !isNaN(Number(key)));
   }
