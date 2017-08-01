@@ -51,7 +51,7 @@
             <span class="icon">
               <i class="fa fa-plus-circle"></i>
             </span>
-            <span>Add New</span>
+            <span>Add New Email</span>
           </a>
         </div>
         <div class="field-body box">
@@ -75,7 +75,7 @@
                 <div class="media-right">
                   <div class="field is-grouped">
                     <p class="control is-expanded">
-                      <input class="checkbox" type="checkbox" [(ngModel)]="email.IsPrimary" (click)="markNonSelectedEmailsAsNotPrimary(user.EmailAddresses, email)"> Is Primary
+                      <input class="checkbox" type="checkbox" [(ngModel)]="email.IsPrimary" (click)="preventIfPrimary($event, email)" (click)="markNonSelectedEmailsAsNotPrimary(user.EmailAddresses, email)"> Is Primary
                     </p>
                     <p class="control is-expanded">
                       <input class="checkbox" type="checkbox" [(ngModel)]="email.CanEmail"> Can Email
@@ -95,6 +95,72 @@
           </div>
         </div>
       </div>
+
+            <div class="field is-horizontal">
+              <div class="field-label is-normal">
+                <label class="label">Phone</label><br />
+                <a (click)="addNewPhone()" class="button is-small green">
+                  <span class="icon">
+                    <i class="fa fa-plus-circle"></i>
+                  </span>
+                  <span>Add New Phone</span>
+                </a>
+              </div>
+              <div class="field-body box">
+                <div class="field">
+                  <article class="media" *ngFor="let phone of user.PhoneNumbers">
+                    <div class="media-left">
+                      <button class="button" (click)="deletePhone(phone)" [disabled]="phone.IsPrimary">
+                    <span class="icon">
+                      <i class="fa fa-trash red"></i>
+                    </span>
+                  </button>
+                    </div>
+                    <div class="media-content">
+                      <p class="control is-expanded has-icons-left">
+                        <input class="input" type="tel" placeholder="Phone" [(ngModel)]="phone.PhoneNumber">
+                        <span class="icon is-small is-left">
+                          <i class="fa fa-phone"></i>
+                        </span>
+                      </p>
+                    </div>
+                    <div class="media-right">
+                      <div class="field is-grouped">
+                        <div class="control has-icons-left">
+                          <div class="select control is-expanded">
+                            <select [(ngModel)]="phone.PhoneType">
+                              <option *ngFor="let key of phoneTypeKeys" [value]="key">{{phoneType[key]}}</option>
+                            </select>
+                          </div>
+                          <div class="icon is-small is-left">
+                            <i class="fa fa-phone-square"></i>
+                          </div>
+                        </div>
+                        <p class="control is-expanded">
+                          <input class="checkbox" 
+                            type="checkbox" 
+                            [(ngModel)]="phone.IsPrimary" 
+                            (click)="preventIfPrimary($event, phone)"
+                            (click)="markNonSelectedPhonesAsNotPrimary(user.PhoneNumbers, phone)"> Is Primary
+                        </p>
+                        <p class="control is-expanded">
+                          <input class="checkbox" type="checkbox" [(ngModel)]="phone.CanText"> Can Text
+                        </p>
+                        <p class="control is-expanded">
+                          <span class="icon">
+                        <i class="fa" 
+                          [class.fa-times]="!phone.IsVerified" 
+                          [class.fa-check]="phone.IsVerified"
+                          [class.green]="phone.IsVerified"
+                          [class.red]="!phone.IsVerified"></i>
+                      </span> Is Verified
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
 
       <hr />
 
