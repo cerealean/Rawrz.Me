@@ -4,14 +4,14 @@ import { AuthenticationService } from "app/services/authentication/authenticatio
 import { Email } from "app/models/email";
 
 @Component({
-  templateUrl: './user-preferences.component.html',
-  styleUrls: ['./user-preferences.component.scss']
+  templateUrl: "./user-preferences.component.html",
+  styleUrls: ["./user-preferences.component.scss"]
 })
 export class UserPreferencesComponent implements OnInit {
   public user: User;
   public isSaving: boolean = false;
 
-  constructor(private authenticationService:AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService) {}
 
   ngOnInit() {
     if (this.authenticationService.isUserLoggedIn()) {
@@ -26,7 +26,23 @@ export class UserPreferencesComponent implements OnInit {
   save() {
     this.isSaving = true;
     this.authenticationService.setCurrentlyLoggedInUser(this.user);
-    setTimeout(() => this.isSaving = false, 2000);
+    setTimeout(() => (this.isSaving = false), 2000);
   }
 
+  markNonSelectedEmailsAsNotPrimary(userEmails:Email[], selectedEmail:Email) {
+    userEmails
+      .filter(email => email != selectedEmail)
+      .map(email => email.IsPrimary = false);
+  }
+  
+  areAnyEmailsMarkedPrimary(userEmails:Email[]): boolean{
+    return userEmails.find(email => email.IsPrimary) != undefined;
+  }
+
+  deleteEmail(email: Email) {
+    if (email.IsPrimary === false) {
+      const index = this.user.EmailAddresses.indexOf(email);
+      this.user.EmailAddresses.splice(index, 1);
+    }
+  }
 }

@@ -47,11 +47,23 @@
       <div class="field is-horizontal">
         <div class="field-label is-normal">
           <label class="label">Email</label><br />
-          <a (click)="addNewEmail()">Add New</a>
+          <a (click)="addNewEmail()" class="button is-small green">
+            <span class="icon">
+              <i class="fa fa-plus-circle"></i>
+            </span>
+            <span>Add New</span>
+          </a>
         </div>
         <div class="field-body box">
             <div class="field">
               <article class="media" *ngFor="let email of user.EmailAddresses">
+                <div class="media-left">
+                  <button class="button" (click)="deleteEmail(email)" [disabled]="email.IsPrimary">
+                    <span class="icon">
+                      <i class="fa fa-trash red"></i>
+                    </span>
+                  </button>
+                </div>
                 <div class="media-content">
                   <p class="control is-expanded has-icons-left">
                     <input class="input" type="email" placeholder="Email" [(ngModel)]="email.EmailAddress">
@@ -63,13 +75,19 @@
                 <div class="media-right">
                   <div class="field is-grouped">
                     <p class="control is-expanded">
-                      <input class="checkbox" type="checkbox" [(ngModel)]="email.IsPrimary"> Is Primary
-                    </p>
-                    <p class="control is-expanded">
-                      <input class="checkbox" type="checkbox" [(ngModel)]="email.IsVerified" disabled> Is Verified
+                      <input class="checkbox" type="checkbox" [(ngModel)]="email.IsPrimary" (click)="markNonSelectedEmailsAsNotPrimary(user.EmailAddresses, email)"> Is Primary
                     </p>
                     <p class="control is-expanded">
                       <input class="checkbox" type="checkbox" [(ngModel)]="email.CanEmail"> Can Email
+                    </p>
+                    <p class="control is-expanded">
+                      <span class="icon">
+                        <i class="fa" 
+                          [class.fa-times]="!email.IsVerified" 
+                          [class.fa-check]="email.IsVerified"
+                          [class.green]="email.IsVerified"
+                          [class.red]="!email.IsVerified"></i>
+                      </span> Is Verified
                     </p>
                   </div>
                 </div>
