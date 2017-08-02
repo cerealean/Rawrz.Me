@@ -14,6 +14,7 @@ export class UserPreferencesComponent implements OnInit {
   public isSaving: boolean = false;
   public phoneTypeKeys: string[] = this.getPhoneTypes();
   public phoneType = PhoneType;
+  public showChangePasswordModal = false;
 
   constructor(private authenticationService: AuthenticationService) {}
 
@@ -71,6 +72,10 @@ export class UserPreferencesComponent implements OnInit {
 
   canTextUser() : boolean {
     return this.user.PhoneNumbers.find(phone => phone.PhoneType === PhoneType.Mobile && phone.CanText) !== undefined;
+  }
+
+  closeChangePasswordModal() {
+    this.showChangePasswordModal = false;
   }
 
   private getPhoneTypes(): string[] {

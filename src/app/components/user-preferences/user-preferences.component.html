@@ -172,8 +172,27 @@
         </div>
         <div class="field-body">
           <div class="field">
-            <span>Click here to change your password</span>
+            <a (click)="showChangePasswordModal = true">Click here to change your password</a>
           </div>
+        </div>
+      </div>
+
+      <div class="modal" [class.is-active]="showChangePasswordModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Change Password</p>
+            <button class="delete" (click)="closeChangePasswordModal()"></button>
+          </header>
+          <section class="modal-card-body">
+            <input class="input" type="password" /><br />
+            <input class="input" type="password" /><br />
+            <input class="input" type="password" />
+          </section>
+          <footer class="modal-card-foot">
+            <a class="button is-success">Save</a>
+            <a class="button" (click)="closeChangePasswordModal()">Cancel</a>
+          </footer>
         </div>
       </div>
 
