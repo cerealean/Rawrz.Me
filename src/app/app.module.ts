@@ -16,6 +16,9 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { ScheduleService } from "app/services/schedule/schedule.service";
 import { HttpModule } from "@angular/http";
 import { UserService } from "app/services/user/user.service";
+import { MsalLoginService } from "app/services/login/msal.login.service";
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -32,13 +35,15 @@ import { UserService } from "app/services/user/user.service";
     AppRoutingModule,
     FormsModule,
     CommonModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
   providers: [
     LoginService,
     AuthenticationService,
     ScheduleService,
-    UserService
+    UserService,
+    MsalLoginService
   ],
   bootstrap: [AppComponent]
 })
