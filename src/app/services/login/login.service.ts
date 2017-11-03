@@ -8,6 +8,7 @@ import { Login } from 'app/models/login';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import { MsalLoginService } from 'app/services/login/msal.login.service';
 
 @Injectable()
 export class LoginService {
@@ -16,21 +17,23 @@ export class LoginService {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private http: Http
+    private http: Http,
+    private msalService: MsalLoginService
   ) { }
 
   login(username: string, password: string): Observable<User>{
     try {
-      const loginModel: Login = { Username: username, Password: password };
-      const request = this.http
-        .post(this.loginServiceEndpoint, loginModel)
-        .map(request => request.json());
-      request.subscribe(user => {
-        console.log(user);
-        this.authenticationService.setCurrentlyLoggedInUser(user)
-      });
+      this.msalService.login();
+      // const loginModel: Login = { Username: username, Password: password };
+      // const request = this.http
+      //   .post(this.loginServiceEndpoint, loginModel)
+      //   .map(request => request.json());
+      // request.subscribe(user => {
+      //   console.log(user);
+      //   this.authenticationService.setCurrentlyLoggedInUser(user)
+      // });
 
-      return request;
+      // return request;
     }
     catch(error){
       console.error(error);
