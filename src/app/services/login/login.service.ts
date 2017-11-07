@@ -21,9 +21,9 @@ export class LoginService {
     private msalService: MsalLoginService
   ) { }
 
-  login(username: string, password: string): Observable<User>{
+  login(username: string, password: string):Observable<User>{
     try {
-      this.msalService.login();
+      return this.msalService.login();
       // const loginModel: Login = { Username: username, Password: password };
       // const request = this.http
       //   .post(this.loginServiceEndpoint, loginModel)

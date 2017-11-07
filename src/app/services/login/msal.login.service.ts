@@ -3,6 +3,9 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../../models/user';
+// import {Msal} from 'msal/dist/msal'
+
+// var rawr = new Msal();
 
 declare var Msal: any;
 
@@ -21,20 +24,21 @@ export class MsalLoginService {
         signUpSignInPolicy: "B2C_1_Default",
         signUpPolicy: "B2C_1_DefaultSignUp",
         signInPolicy: "B2C_1_DefaultSignIn",
-        b2cScopes: ["https://fabrikamb2c.onmicrosoft.com/demoapi/demo.read"],
+        b2cScopes: ["https://RawrzTest.onmicrosoft.com/authorize/demo.read"],
         webApi: "https://RawrzTest.onmicrosoft.com/authorize"
     };
     authority = "https://login.microsoftonline.com/tfp/" + this.tenantConfig.tenant;
+    clientApplication;
 
     public login() {
         //Todo: get this to work without opening a new window
-        const clientApplication = this.CreateClientApplication(this.tenantConfig.signInPolicy);
-        clientApplication.loginPopup(this.tenantConfig.b2cScopes).then(function (idToken) {
-            clientApplication.acquireTokenSilent(this.tenantConfig.b2cScopes).then(function (accessToken) {
+        this.clientApplication = this.CreateClientApplication(this.tenantConfig.signInPolicy);
+        this.clientApplication.loginPopup(this.tenantConfig.b2cScopes).then(function (idToken) {
+            this.clientApplication.acquireTokenSilent(this.tenantConfig.b2cScopes).then(function (accessToken) {
                 console.log(idToken, accessToken);
             }, function (error) {
                 console.error(error);
-                clientApplication.acquireTokenPopup(this.tenantConfig.b2cScopes).then(function (accessToken) {
+                this.clientApplication.acquireTokenPopup(this.tenantConfig.b2cScopes).then(function (accessToken) {
                     console.log("Second time", accessToken);
                 }, function (error) {
                     console.error("Error acquiring the popup:\n" + error);
@@ -43,6 +47,7 @@ export class MsalLoginService {
         }, function (error) {
             console.error("Error during login:\n" + error);
         });
+        return new Observable<User>();
     }
 
     public otherMethod(){
@@ -67,7 +72,7 @@ export class MsalLoginService {
     }
 
     private CreateClientApplication(action: string) {
-        return new Msal.UserAgentApplication(
+        const clientApplication =  new Msal.UserAgentApplication(
             this.tenantConfig.clientID, this.authority + "/" + action,
             function (errorDesc: any, token: any, error: any, tokenType: any) {
                 console.log("Error desk", errorDesc);
@@ -78,5 +83,7 @@ export class MsalLoginService {
                 // Called after loginRedirect or acquireTokenPopup
             }
         );
+        console.log(clientApplication);
+        return clientApplication;
     }
 }
