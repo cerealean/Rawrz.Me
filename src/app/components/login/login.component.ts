@@ -55,11 +55,6 @@ export class LoginComponent implements OnInit {
           .login(usernameValue, passwordValue)
           .subscribe(user => {
             console.log(user);
-              // this.isValidLogin = user != null;
-              // if (this.isValidLogin) {
-              //   this.user.emit(user);
-              //   this.closeModal(username, password);
-              // }
             },
             () => this.isLoggingIn = false,
             () => this.isLoggingIn = false

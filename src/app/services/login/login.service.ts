@@ -23,17 +23,17 @@ export class LoginService {
 
   login(username: string, password: string):Observable<User>{
     try {
-      return this.msalService.login();
-      // const loginModel: Login = { Username: username, Password: password };
-      // const request = this.http
-      //   .post(this.loginServiceEndpoint, loginModel)
-      //   .map(request => request.json());
-      // request.subscribe(user => {
-      //   console.log(user);
-      //   this.authenticationService.setCurrentlyLoggedInUser(user)
-      // });
+      //return this.msalService.login();
+      const loginModel: Login = { Username: username, Password: password };
+      const request = this.http
+        .post(this.loginServiceEndpoint, loginModel)
+        .map(request => request.json());
+      request.subscribe(user => {
+        console.log(user);
+        this.authenticationService.setCurrentlyLoggedInUser(user)
+      });
 
-      // return request;
+      return request;
     }
     catch(error){
       console.error(error);
